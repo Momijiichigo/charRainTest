@@ -4,8 +4,9 @@
     "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --validate --sourceMap --optimize --measure",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
     "asbuild:hltype2": "asc ./node_modules/as-bind/lib/assembly/as-bind.ts assembly/index2.ts -b build/hltype2.wasm -t build/hltype2.wat  --sourceMap --measure --runtime full -O3",
-    "asbuild:WASI": "asc  assembly/index.ts -b build/wasi1.wasm -t build/wasi1.wat  --sourceMap --measure --use abort=wasi_abort --validate -O3",
-    "test": "node tests"
+    "asbuild:WASI": "asc  assembly/index.ts -b build/wasi1.wasm -t build/wasi1.wat  --sourceMap --measure --runtime none --use abort=wasi_abort --validate -O3",
+    "test": "node tests",
+    "wasitest": "wasmtime build/wasi1.wasm"
   },
   "dependencies": {
     "@assemblyscript/loader": "^0.9.1",

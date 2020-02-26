@@ -1,4 +1,4 @@
-# charRainTest
+# charRainTest - assemblyscript test
 
 characters raining on terminal(looks like matrix) for linux
 

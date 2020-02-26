@@ -1,5 +1,5 @@
 // The entry file of your WebAssembly module.
-declare function sayHello(): void;
+//declare function sayHello(): void;
 //declare function log(message: string): void;
 //declare function logi(message: i16): void;
 declare function write(message: string): void;

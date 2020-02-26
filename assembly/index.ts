@@ -4,7 +4,7 @@
 //declare function logi(message: i16): void;
 //declare function Console.write(message: string): void;
 //declare function cursorTo(x: i16,y: i16): void;
-import { Console, Time } from "../node_modules/as-wasi/assembly";
+import { Environ,Console, Time } from "../node_modules/as-wasi/assembly";
 const xint:i16=100,yint:i16=100;
 
 //--use Math=JSMath
