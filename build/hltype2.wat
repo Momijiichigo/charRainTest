@@ -1588,23 +1588,23 @@
  )
  (func $assembly/index2/CodeRain#constructor (; 22 ;) (result i32)
   (local $0 i32)
-  i32.const 8
+  i32.const 4
   i32.const 11
   call $~lib/rt/tlsf/__alloc
   call $~lib/rt/pure/__retain
   local.tee $0
   i32.const 0
-  i32.store
+  i32.store16
   local.get $0
   i32.const 0
-  i32.store offset=4
+  i32.store16 offset=2
   local.get $0
   global.get $assembly/index2/xint
   call $assembly/index2/getRandomInt
-  i32.store
+  i32.store16
   local.get $0
   i32.const -30
-  i32.store offset=4
+  i32.store16 offset=2
   local.get $0
  )
  (func $~lib/rt/tlsf/checkUsedBlock (; 23 ;) (param $0 i32) (result i32)
@@ -3094,7 +3094,15 @@
   local.get $2
   call $~lib/rt/pure/__retain
  )
- (func $~lib/string/String#concat (; 33 ;) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/number/I16#toString (; 33 ;) (param $0 i32) (result i32)
+  local.get $0
+  i32.const 16
+  i32.shl
+  i32.const 16
+  i32.shr_s
+  call $~lib/util/number/itoa32
+ )
+ (func $~lib/string/String#concat (; 34 ;) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -3161,7 +3169,7 @@
   call $~lib/rt/pure/__release
   local.get $2
  )
- (func $~lib/string/String.__concat (; 34 ;) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__concat (; 35 ;) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.const 976
   local.get $0
@@ -3169,14 +3177,14 @@
   local.get $1
   call $~lib/string/String#concat
  )
- (func $assembly/index2/cursorTo (; 35 ;) (param $0 i32) (param $1 i32)
+ (func $assembly/index2/cursorTo (; 36 ;) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
   i32.const 464
   local.get $1
-  call $~lib/util/number/itoa32
+  call $~lib/number/I16#toString
   local.tee $1
   call $~lib/string/String.__concat
   local.tee $2
@@ -3184,7 +3192,7 @@
   call $~lib/string/String.__concat
   local.tee $3
   local.get $0
-  call $~lib/util/number/itoa32
+  call $~lib/number/I16#toString
   local.tee $0
   call $~lib/string/String.__concat
   local.tee $4
@@ -3205,7 +3213,7 @@
   local.get $5
   call $~lib/rt/pure/__release
  )
- (func $~lib/string/String.fromCharCode (; 36 ;) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.fromCharCode (; 37 ;) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   i32.const 2
@@ -3228,11 +3236,11 @@
   local.get $2
   call $~lib/rt/pure/__retain
  )
- (func $~setArgumentsLength (; 37 ;) (param $0 i32)
+ (func $~setArgumentsLength (; 38 ;) (param $0 i32)
   local.get $0
   global.set $~argumentsLength
  )
- (func $assembly/index2/CodeRain#draw (; 38 ;) (param $0 i32)
+ (func $assembly/index2/CodeRain#draw (; 39 ;) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3244,18 +3252,18 @@
   (local $9 i32)
   (local $10 i32)
   local.get $0
-  i32.load offset=4
+  i32.load16_s offset=2
   i32.const 0
   i32.gt_s
   if
    local.get $0
-   i32.load
+   i32.load16_s
    local.get $0
-   i32.load offset=4
+   i32.load16_s offset=2
    call $assembly/index2/cursorTo
   else
    local.get $0
-   i32.load
+   i32.load16_s
    i32.const 0
    call $assembly/index2/cursorTo
   end
@@ -3269,7 +3277,7 @@
     block $for-break0
      local.get $1
      local.get $0
-     i32.load offset=4
+     i32.load16_s offset=2
      i32.add
      i32.const 0
      i32.gt_s
@@ -3278,7 +3286,7 @@
       call $assembly/index2/write
       local.get $1
       local.get $0
-      i32.load offset=4
+      i32.load16_s offset=2
       i32.add
       global.get $assembly/index2/yint
       i32.gt_s
@@ -3353,6 +3361,10 @@
       call $assembly/index2/getRandomInt
       i32.const 33
       i32.add
+      i32.const 16
+      i32.shl
+      i32.const 16
+      i32.shr_s
       i32.const 0
       local.set $2
       block $1of1
@@ -3385,12 +3397,12 @@
   end
   local.get $0
   local.get $0
-  i32.load offset=4
+  i32.load16_s offset=2
   i32.const 1
   i32.add
-  i32.store offset=4
+  i32.store16 offset=2
  )
- (func $~lib/array/Array<assembly/index2/CodeRain>#pop (; 39 ;) (param $0 i32) (result i32)
+ (func $~lib/array/Array<assembly/index2/CodeRain>#pop (; 40 ;) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -3421,14 +3433,18 @@
   local.get $1
   i32.store offset=12
  )
- (func $assembly/index2/draw~anonymous|0 (; 40 ;) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $assembly/index2/draw~anonymous|0 (; 41 ;) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $0
   call $assembly/index2/CodeRain#draw
   local.get $0
-  i32.load offset=4
+  i32.load16_s offset=2
   global.get $assembly/index2/yint
   i32.const 1
   i32.add
+  i32.const 16
+  i32.shl
+  i32.const 16
+  i32.shr_s
   i32.gt_s
   if
    global.get $assembly/index2/rain
@@ -3436,7 +3452,7 @@
    call $~lib/rt/pure/__release
   end
  )
- (func $~lib/array/Array<assembly/index2/CodeRain>#forEach (; 41 ;) (param $0 i32)
+ (func $~lib/array/Array<assembly/index2/CodeRain>#forEach (; 42 ;) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3475,7 +3491,7 @@
    end
   end
  )
- (func $assembly/index2/draw (; 42 ;)
+ (func $assembly/index2/draw (; 43 ;)
   (local $0 i32)
   global.get $assembly/index2/rain
   call $assembly/index2/CodeRain#constructor
@@ -3486,13 +3502,13 @@
   local.get $0
   call $~lib/rt/pure/__release
  )
- (func $assembly/index2/main (; 43 ;)
+ (func $assembly/index2/main (; 44 ;)
   nop
  )
- (func $~start (; 44 ;)
+ (func $~start (; 45 ;)
   call $start:assembly/index2
  )
- (func $~lib/rt/pure/decrement (; 45 ;) (param $0 i32)
+ (func $~lib/rt/pure/decrement (; 46 ;) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -3558,7 +3574,7 @@
    i32.store offset=4
   end
  )
- (func $~lib/rt/pure/__visit (; 46 ;) (param $0 i32)
+ (func $~lib/rt/pure/__visit (; 47 ;) (param $0 i32)
   local.get $0
   i32.const 1396
   i32.lt_u
@@ -3570,7 +3586,7 @@
   i32.sub
   call $~lib/rt/pure/decrement
  )
- (func $~lib/array/Array<assembly/index2/CodeRain>#__visit_impl (; 47 ;) (param $0 i32)
+ (func $~lib/array/Array<assembly/index2/CodeRain>#__visit_impl (; 48 ;) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -3602,7 +3618,7 @@
    end
   end
  )
- (func $~lib/rt/__visit_members (; 48 ;) (param $0 i32)
+ (func $~lib/rt/__visit_members (; 49 ;) (param $0 i32)
   block $block$4$break
    block $switch$1$default
     block $switch$1$case$14

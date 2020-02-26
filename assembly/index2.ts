@@ -1,36 +1,36 @@
 // The entry file of your WebAssembly module.
 declare function sayHello(): void;
-declare function log(message: string): void;
-declare function logi(message: i32): void;
+//declare function log(message: string): void;
+//declare function logi(message: i16): void;
 declare function write(message: string): void;
-//declare function cursorTo(x: i32,y: i32): void;
-declare const xint:i32,yint:i32;
+//declare function cursorTo(x: i16,y: i16): void;
+declare const xint:i16,yint:i16;
 
 //--use Math=JSMath
 const seed:i64 = 100;
 NativeMath.seedRandom(seed);
-function cursorTo(x:i32,y:i32):void{
+function cursorTo(x:i16,y:i16):void{
     write("\x1b["+y.toString()+";"+x.toString()+"H")
 }
 class colorInfo{
-    static r1:i32=27;
-    static g1:i32=64;
-    static b1:i32=27;
-    static r2:i32=4;
-    static g2:i32=255;
-    static b2:i32=0;
+    static r1:i16=27;
+    static g1:i16=64;
+    static b1:i16=27;
+    static r2:i16=4;
+    static g2:i16=255;
+    static b2:i16=0;
 };
-function getRandomInt(max:i32): i32{
-    return <i32>(Math.random() * max);
+function getRandomInt(max:i16): i16{
+    return <i16>(Math.random() * max);
 }
-const length:i32 = 30;
+const length:i16 = 30;
 //logi(yint);
 
 //color change steps
-const rr:i32=(colorInfo.r2-colorInfo.r1)/length,gr:i32=(colorInfo.g2-colorInfo.g1)/length,br:i32=(colorInfo.b2-colorInfo.b1)/length;
+const rr:i16=(colorInfo.r2-colorInfo.r1)/length,gr:i16=(colorInfo.g2-colorInfo.g1)/length,br:i16=(colorInfo.b2-colorInfo.b1)/length;
 class CodeRain{
-    x: i32;
-    y: i32;
+    x: i16;
+    y: i16;
     constructor(){
         this.x = getRandomInt(xint);
         this.y=-length;
